@@ -1,0 +1,15 @@
+---
+import { getEntry, render } from "astro:content"
+import { GuideApp } from "../../components/DocsApp"
+import Layout from "../../layouts/Layout.astro"
+import { guideBySlug, nav } from "../../lib/guides"
+
+const guide = guideBySlug.get("introduction")!
+const entry = await getEntry("guides", "introduction")
+if (!entry) return new Response("Not found", { status: 404 })
+const { Content } = await render(entry)
+---
+
+<Layout title={guide.title} description={guide.description} path="/docs">
+  <GuideApp client:load nav={nav} active="/docs"><Content /></GuideApp>
+</Layout>

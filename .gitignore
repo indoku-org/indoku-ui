@@ -1,0 +1,23 @@
+node_modules/
+dist/
+.astro/
+.vercel/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+
+# Secrets and keys (never commit)
+*.pem
+*.key
+*.p12
+.env.local
+.env.*.local
+.vercel.env
+
+# Packaging output / scratch
+*.tgz
+.idea/
+.vscode/
+npm-debug.log*

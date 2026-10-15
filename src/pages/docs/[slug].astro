@@ -1,0 +1,34 @@
+---
+import { getEntry, render } from "astro:content"
+import { ComponentApp, GuideApp } from "../../components/DocsApp"
+import { pageBySlug, pages } from "../../content/pages"
+import Layout from "../../layouts/Layout.astro"
+import { guideBySlug, nav } from "../../lib/guides"
+
+const { slug = "" } = Astro.params
+
+if (slug === "introduction") return Astro.redirect("/docs", 301)
+
+const page = pageBySlug.get(slug)
+const guide = guideBySlug.get(slug)
+if (!page && !guide) return new Response("Not found", { status: 404 })
+
+const i = page ? pages.findIndex((p) => p.slug === slug) : -1
+const prev = i > 0 ? pages[i - 1] : undefined
+const next = i >= 0 ? pages[i + 1] : undefined
+
+const entry = guide ? await getEntry("guides", slug) : undefined
+const Content = entry ? (await render(entry)).Content : undefined
+---
+
+{
+  page ? (
+    <Layout title={page.name} description={page.description} path={`/docs/${slug}`} ogImage={`/og/${slug}.png`}>
+      <ComponentApp client:load nav={nav} page={page} prev={prev} next={next} />
+    </Layout>
+  ) : (
+    <Layout title={guide!.title} description={guide!.description} path={`/docs/${slug}`} ogImage={`/og/${slug}.png`}>
+      <GuideApp client:load nav={nav} active={`/docs/${slug}`}>{Content && <Content />}</GuideApp>
+    </Layout>
+  )
+}

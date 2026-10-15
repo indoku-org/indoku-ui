@@ -1,0 +1,50 @@
+---
+import { colorModeScript } from "@indoku/ui"
+import "katex/dist/katex.min.css"
+
+interface Props {
+  title: string
+  description: string
+  path: string
+  ogImage?: string
+}
+
+const { title, description, path, ogImage = "/og/default.png" } = Astro.props
+const site = Astro.site ?? new URL(Astro.url.origin)
+const pageUrl = new URL(path, site).href
+const image = new URL(ogImage, site).href
+const full = path === "/" ? title : `${title} – IndokuUI`
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{full}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="@indokudev" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex, notranslate" />
+    <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex, notranslate" />
+    <meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="IndokuUI" />
+    <meta property="og:title" content={full} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:image" content={image} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={full} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+    <meta name="twitter:creator" content="@indokudev" />
+    <script is:inline set:html={colorModeScript} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,15 @@
+---
+import Landing from "../components/Landing"
+import { docs, groups } from "../content/registry"
+import Layout from "../layouts/Layout.astro"
+
+const g = groups.map((name) => ({ name, items: docs.filter((d) => d.group === name).map((d) => ({ slug: d.slug, name: d.name })) }))
+---
+
+<Layout
+  title="IndokuUI – React UI with a shadcn look"
+  description="IndokuUI is a standalone React UI library with a minimal shadcn-style design and dozens of ready-made components. Created by @indokudev."
+  path="/"
+>
+  <Landing client:load count={docs.length} groups={g} />
+</Layout>

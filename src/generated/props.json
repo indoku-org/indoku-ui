@@ -1,0 +1,2042 @@
+{
+  "attachment": {
+    "Root": [
+      {
+        "name": "onClick",
+        "type": "() => void",
+        "required": false,
+        "description": "Click handler for the whole card (not the action buttons). Usually opens a preview."
+      },
+      {
+        "name": "orientation",
+        "type": "\"horizontal\" | \"vertical\"",
+        "required": false,
+        "description": "`\"vertical\"` renders a square card (thumbnail on top, name below). Pairs well with `Attachment.Group`.",
+        "default": "horizontal"
+      }
+    ],
+    "Media": [
+      {
+        "name": "src",
+        "type": "string",
+        "required": false,
+        "description": "Thumbnail image URL. Without it, an icon based on `kind` is shown."
+      },
+      {
+        "name": "alt",
+        "type": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "kind",
+        "type": "\"file\" | \"code\"",
+        "required": false,
+        "description": "Built-in icon: `\"file\"` or `\"code\"` (`</>`). Ignored when `src` is set.",
+        "default": "file"
+      },
+      {
+        "name": "loading",
+        "type": "boolean",
+        "required": false,
+        "description": "Show a spinner (upload in progress)."
+      }
+    ],
+    "Meta": [
+      {
+        "name": "size",
+        "type": "number",
+        "required": false,
+        "description": "File size in bytes. Formatted automatically (e.g. 1200000 → \"1.1 MB\")."
+      },
+      {
+        "name": "format",
+        "type": "string",
+        "required": false,
+        "description": "Format label shown before the size, e.g. `\"PNG\"` → \"PNG · 820 KB\"."
+      }
+    ],
+    "Status": [
+      {
+        "name": "status",
+        "type": "AttachmentStatus",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "progress",
+        "type": "number",
+        "required": false,
+        "description": "0–100. Used when `status` is `\"uploading\"`."
+      },
+      {
+        "name": "variant",
+        "type": "\"bar\" | \"text\"",
+        "required": false,
+        "description": "`\"bar\"` renders a progress bar. `\"text\"` renders \"Uploading · 64%\" (pair with `<Attachment.Media loading />`).",
+        "default": "bar"
+      }
+    ],
+    "Action": [
+      {
+        "name": "\"aria-label\"",
+        "type": "string",
+        "required": true,
+        "description": "Defines a string value that labels the current element."
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": false,
+        "description": ""
+      }
+    ]
+  },
+  "bubble": {
+    "Root": [
+      {
+        "name": "align",
+        "type": "BubbleAlign",
+        "required": false,
+        "default": "start",
+        "description": "`\"end\"` = your own message (usually right), `\"start\"` = the other side."
+      },
+      {
+        "name": "variant",
+        "type": "BubbleVariant",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "Action": [
+      {
+        "name": "\"aria-label\"",
+        "type": "string",
+        "required": true,
+        "description": "Defines a string value that labels the current element."
+      }
+    ],
+    "Collapsible": [
+      {
+        "name": "open",
+        "type": "boolean",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "label",
+        "type": "ReactNode",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "onOpenChange",
+        "type": "(open: boolean) => void",
+        "required": true,
+        "description": ""
+      }
+    ]
+  },
+  "button-group": {
+    "Root": [
+      {
+        "name": "orientation",
+        "type": "\"horizontal\" | \"vertical\"",
+        "required": false,
+        "description": ""
+      }
+    ]
+  },
+  "chart": {
+    "ChartLegend": [
+      {
+        "name": "items",
+        "type": "{ name: string; color: string }[]",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "chart",
+        "type": "ChartApi",
+        "required": true,
+        "description": ""
+      }
+    ],
+    "CartesianGrid": [
+      {
+        "name": "x0",
+        "type": "number",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "x1",
+        "type": "number",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "y0",
+        "type": "number",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "y1",
+        "type": "number",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "horizontal",
+        "type": "number[]",
+        "required": false,
+        "description": "Posisi y (px) tiap garis horizontal."
+      },
+      {
+        "name": "vertical",
+        "type": "number[]",
+        "required": false,
+        "description": "Posisi x (px) tiap garis vertikal."
+      }
+    ],
+    "ChartAxis": [
+      {
+        "name": "orientation",
+        "type": "\"bottom\" | \"left\" | \"right\"",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "at",
+        "type": "number",
+        "required": true,
+        "description": "Posisi garis sumbu (px): y untuk bottom, x untuk left/right."
+      },
+      {
+        "name": "ticks",
+        "type": "{ pos: number; label: string }[]",
+        "required": true,
+        "description": ""
+      }
+    ],
+    "LineChart": [
+      {
+        "name": "series",
+        "type": "ChartSeries[]",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "categories",
+        "type": "string[]",
+        "required": false,
+        "description": "Label for each data point (x axis), used for the point's aria-label."
+      },
+      {
+        "name": "area",
+        "type": "boolean",
+        "required": false,
+        "description": "Fill the area under the line (area chart).",
+        "default": "false"
+      },
+      {
+        "name": "gradient",
+        "type": "boolean",
+        "required": false,
+        "description": "Isi area pakai gradient (memudar ke bawah)."
+      },
+      {
+        "name": "showDots",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "dashed",
+        "type": "boolean",
+        "required": false,
+        "description": "Semua garis putus-putus (atau per series lewat `series[i].dashed`)."
+      },
+      {
+        "name": "connectNulls",
+        "type": "boolean",
+        "required": false,
+        "description": "Sambung garis melewati nilai `null`."
+      },
+      {
+        "name": "seriesLabels",
+        "type": "boolean",
+        "required": false,
+        "description": "Tampilkan nama series di ujung garis."
+      },
+      {
+        "name": "rightTickFormat",
+        "type": "ChartFormat",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "AreaChart": [
+      {
+        "name": "series",
+        "type": "ChartSeries[]",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "categories",
+        "type": "string[]",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "mode",
+        "type": "\"overlap\" | \"stacked\" | \"percent\"",
+        "required": false,
+        "description": "\"overlap\" (default), \"stacked\" (ditumpuk) atau \"percent\" (ditumpuk, 0-100%)."
+      },
+      {
+        "name": "gradient",
+        "type": "boolean",
+        "required": false,
+        "default": "true",
+        "description": "Isi pakai gradient."
+      },
+      {
+        "name": "showDots",
+        "type": "boolean",
+        "required": false,
+        "description": "Tanda titik di tiap data."
+      },
+      {
+        "name": "referenceArea",
+        "type": "{ from: number; to: number; label?: string }",
+        "required": false,
+        "description": "Blok warna di antara dua index kategori."
+      }
+    ],
+    "BarChart": [
+      {
+        "name": "series",
+        "type": "ChartSeries[]",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "categories",
+        "type": "string[]",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "mode",
+        "type": "\"grouped\" | \"stacked\" | \"percent\"",
+        "required": false,
+        "description": "\"grouped\" (default), \"stacked\" atau \"percent\" (ditumpuk, 0-100%)."
+      },
+      {
+        "name": "gap",
+        "type": "number",
+        "required": false,
+        "default": "0.3",
+        "description": "Gap between category groups, 0–1 (share of the slot width)."
+      },
+      {
+        "name": "joined",
+        "type": "boolean",
+        "required": false,
+        "description": "Hilangkan jarak antar bar (histogram)."
+      }
+    ],
+    "Histogram": [
+      {
+        "name": "values",
+        "type": "number[]",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "bins",
+        "type": "number",
+        "required": false,
+        "default": "akar jumlah data (aturan Sturges sederhana)",
+        "description": "Jumlah bin."
+      },
+      {
+        "name": "color",
+        "type": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "RangeBarChart": [
+      {
+        "name": "data",
+        "type": "RangeDatum[]",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "color",
+        "type": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "gap",
+        "type": "number",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "CandlestickChart": [
+      {
+        "name": "data",
+        "type": "CandleDatum[]",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "upColor",
+        "type": "string",
+        "required": false,
+        "description": "Warna naik / turun (token warna)."
+      },
+      {
+        "name": "downColor",
+        "type": "string",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "BarSegment": [
+      {
+        "name": "data",
+        "type": "BarSegmentDatum[]",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "barHeight",
+        "type": "number",
+        "required": false,
+        "default": "12",
+        "description": "Tinggi bar (px)."
+      },
+      {
+        "name": "showLegend",
+        "type": "boolean",
+        "required": false,
+        "default": "true",
+        "description": "Tampilkan legend dengan nilai & persentase."
+      },
+      {
+        "name": "format",
+        "type": "ChartFormat",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "PieChart": [
+      {
+        "name": "data",
+        "type": "PieDatum[]",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "size",
+        "type": "number",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "innerRadiusRatio",
+        "type": "number",
+        "required": false,
+        "description": "`0` = full pie, e.g. `0.6` = donut with a 60% radius hole.",
+        "default": "0"
+      },
+      {
+        "name": "padAngle",
+        "type": "number",
+        "required": false,
+        "default": "0",
+        "description": "Celah antar segmen (derajat)."
+      },
+      {
+        "name": "detached",
+        "type": "number[]",
+        "required": false,
+        "description": "Index segmen yang digeser keluar."
+      },
+      {
+        "name": "detachDistance",
+        "type": "number",
+        "required": false,
+        "default": "8",
+        "description": "Jarak geser segmen (px)."
+      },
+      {
+        "name": "radialText",
+        "type": "{ label: string; sublabel?: string }",
+        "required": false,
+        "description": "Teks di tengah (donut): `label` besar + `sublabel` kecil."
+      },
+      {
+        "name": "legend",
+        "type": "boolean",
+        "required": false,
+        "description": "Legend interaktif."
+      }
+    ],
+    "RadialText": [
+      {
+        "name": "x",
+        "type": "number",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "y",
+        "type": "number",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "sublabel",
+        "type": "string",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "RadarChart": [
+      {
+        "name": "axes",
+        "type": "string[]",
+        "required": true,
+        "description": "Nama tiap sumbu (minimal 3)."
+      },
+      {
+        "name": "series",
+        "type": "ChartSeries[]",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "size",
+        "type": "number",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "levels",
+        "type": "number",
+        "required": false,
+        "default": "4",
+        "description": "Jumlah lingkaran/poligon grid."
+      },
+      {
+        "name": "grid",
+        "type": "\"polygon\" | \"circle\" | \"filled\"",
+        "required": false,
+        "description": "Bentuk grid: \"polygon\" (default), \"circle\" atau \"filled\" (selang-seling terisi)."
+      },
+      {
+        "name": "pointLabels",
+        "type": "boolean",
+        "required": false,
+        "default": "true",
+        "description": "Label di tiap sumbu."
+      },
+      {
+        "name": "max",
+        "type": "number",
+        "required": false,
+        "default": "nilai terbesar data",
+        "description": "Nilai maksimum sumbu."
+      },
+      {
+        "name": "legend",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "highlight",
+        "type": "number | null",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "ScatterChart": [
+      {
+        "name": "series",
+        "type": "ScatterSeries[]",
+        "required": true,
+        "description": "Satu atau lebih grup data."
+      },
+      {
+        "name": "trendLine",
+        "type": "boolean",
+        "required": false,
+        "description": "Garis tren regresi linear per grup."
+      },
+      {
+        "name": "connect",
+        "type": "boolean",
+        "required": false,
+        "description": "Sambungkan titik berurutan dengan garis."
+      },
+      {
+        "name": "dotSize",
+        "type": "number",
+        "required": false,
+        "default": "4",
+        "description": "Radius titik."
+      },
+      {
+        "name": "referenceLines",
+        "type": "ReferenceLineSpec[]",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "Sparkline": [
+      {
+        "name": "values",
+        "type": "number[]",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "width",
+        "type": "number",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "height",
+        "type": "number",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "color",
+        "type": "string",
+        "required": false,
+        "description": "Token warna, atau \"trend\" (hijau kalau naik, merah kalau turun)."
+      },
+      {
+        "name": "area",
+        "type": "boolean",
+        "required": false,
+        "description": "Isi area di bawah garis."
+      },
+      {
+        "name": "interactive",
+        "type": "boolean",
+        "required": false,
+        "default": "false",
+        "description": "Tampilkan nilai titik yang di-hover (tooltip)."
+      },
+      {
+        "name": "format",
+        "type": "ChartFormat",
+        "required": false,
+        "description": ""
+      }
+    ]
+  },
+  "code-block": {
+    "Root": [
+      {
+        "name": "code",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "language",
+        "type": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "title",
+        "type": "React.ReactNode",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "showLineNumbers",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "highlightLines",
+        "type": "number[]",
+        "required": false,
+        "description": "Line numbers (1-based) to highlight."
+      },
+      {
+        "name": "addedLines",
+        "type": "number[]",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "removedLines",
+        "type": "number[]",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "wrap",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "maxLines",
+        "type": "number",
+        "required": false,
+        "description": "Limit the initial height; the rest can be revealed with a button."
+      },
+      {
+        "name": "copyable",
+        "type": "boolean",
+        "required": false,
+        "default": "true",
+        "description": "Show the copy button."
+      }
+    ]
+  },
+  "command": {
+    "Root": [
+      {
+        "name": "shouldFilter",
+        "type": "boolean",
+        "required": false,
+        "description": "Turn off built-in filtering when you filter yourself (e.g. server results).",
+        "default": "true"
+      },
+      {
+        "name": "search",
+        "type": "string",
+        "required": false,
+        "description": "Controlled search text."
+      },
+      {
+        "name": "onSearchChange",
+        "type": "(search: string) => void",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "loop",
+        "type": "boolean",
+        "required": false,
+        "default": "true",
+        "description": "Arrow down on the last item wraps to the first."
+      }
+    ],
+    "Group": [
+      {
+        "name": "heading",
+        "type": "ReactNode",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "Item": [
+      {
+        "name": "value",
+        "type": "string",
+        "required": false,
+        "description": "Text matched against the search. Defaults to `children` when it is a string."
+      },
+      {
+        "name": "keywords",
+        "type": "string[]",
+        "required": false,
+        "description": "Extra keywords used by search."
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "onSelect",
+        "type": "(value: string) => void",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "Dialog": [
+      {
+        "name": "open",
+        "type": "boolean",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "onOpenChange",
+        "type": "(open: boolean) => void",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "hotkey",
+        "type": "string",
+        "required": false,
+        "description": "Shortcut letter (used with Cmd/Ctrl), e.g. `\"k\"` for Cmd/Ctrl+K."
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "required": false,
+        "description": "Accessible label of the dialog."
+      }
+    ]
+  },
+  "data-table": {
+    "Root": [
+      {
+        "name": "data",
+        "type": "T[]",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "columns",
+        "type": "DataTableColumn<T>[]",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "getRowId",
+        "type": "(row: T, index: number) => string",
+        "required": false,
+        "description": "Unique id of each row (used for selection). Defaults to the index in `data`."
+      },
+      {
+        "name": "pageSize",
+        "type": "number",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "defaultSort",
+        "type": "SortState",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "selectable",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "onSelectionChange",
+        "type": "(rows: T[]) => void",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "labels",
+        "type": "Partial<DataTableLabels>",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": false,
+        "description": ""
+      }
+    ]
+  },
+  "date-fields": {
+    "DateInputField": [
+      {
+        "name": "range",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      }
+    ]
+  },
+  "direction": {
+    "Root": [
+      {
+        "name": "dir",
+        "type": "Direction",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": false,
+        "description": ""
+      }
+    ]
+  },
+  "empty": {
+    "Root": [
+      {
+        "name": "variant",
+        "type": "\"plain\" | \"outline\"",
+        "required": false,
+        "default": "plain",
+        "description": "`\"outline\"` draws a dashed border."
+      }
+    ],
+    "Media": [
+      {
+        "name": "variant",
+        "type": "\"default\" | \"icon\"",
+        "required": false,
+        "description": "`\"icon\"` puts the icon in a muted box. `\"default\"` is free-form (image/illustration).",
+        "default": "default"
+      }
+    ]
+  },
+  "file-tree": {
+    "FileTree": [
+      {
+        "name": "items",
+        "type": "FileTreeNode[]",
+        "required": true,
+        "description": "Top-level nodes."
+      },
+      {
+        "name": "label",
+        "type": "ReactNode",
+        "required": false,
+        "description": "Heading shown above the tree."
+      },
+      {
+        "name": "folderIcon",
+        "type": "ReactNode | ((node: FileTreeNode) => ReactNode)",
+        "required": false,
+        "default": "a folder icon",
+        "description": "Icon of a closed folder."
+      },
+      {
+        "name": "folderOpenIcon",
+        "type": "ReactNode | ((node: FileTreeNode) => ReactNode)",
+        "required": false,
+        "default": "an open folder icon",
+        "description": "Icon of an open folder."
+      },
+      {
+        "name": "fileIcon",
+        "type": "ReactNode | ((node: FileTreeNode) => ReactNode)",
+        "required": false,
+        "default": "a document icon",
+        "description": "Icon of a file; pass a function to choose by name or extension."
+      },
+      {
+        "name": "showChevron",
+        "type": "boolean",
+        "required": false,
+        "default": "true",
+        "description": "Show the chevron before folders."
+      },
+      {
+        "name": "indentGuides",
+        "type": "boolean",
+        "required": false,
+        "default": "true",
+        "description": "Vertical guide lines for nested levels."
+      }
+    ]
+  },
+  "flash": {
+    "Flash": [
+      {
+        "name": "type",
+        "type": "FlashType",
+        "required": false,
+        "default": "neutral\". Nentuin warna + ikon default",
+        "description": ""
+      },
+      {
+        "name": "colorPalette",
+        "type": "string",
+        "required": false,
+        "description": "Override the color. Follows `type` by default."
+      },
+      {
+        "name": "icon",
+        "type": "ReactNode | false",
+        "required": false,
+        "description": "Override the icon. `false` hides it."
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": false,
+        "description": ""
+      }
+    ]
+  },
+  "form": {
+    "Input": [
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "value",
+        "type": "V",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "onChange",
+        "type": "(e: { target: { value: V } }) => void",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "onBlur",
+        "type": "() => void",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "onValueChange",
+        "type": "(value: V) => void",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "__key",
+        "type": "K",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "Field": [
+      {
+        "name": "meta",
+        "type": "FieldMeta",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "label",
+        "type": "ReactNode",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "helperText",
+        "type": "ReactNode",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "required",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": true,
+        "description": ""
+      }
+    ]
+  },
+  "graph2d": {
+    "Graph2D": [
+      {
+        "name": "functions",
+        "type": "GraphFunction[]",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "points",
+        "type": "GraphPoint[]",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "viewport",
+        "type": "GraphViewport",
+        "required": false,
+        "default": "-10..10 on both axes",
+        "description": "Initial visible area."
+      },
+      {
+        "name": "aspect",
+        "type": "number",
+        "required": false,
+        "description": "Width / height. Default 16/10."
+      },
+      {
+        "name": "interactive",
+        "type": "boolean",
+        "required": false,
+        "description": "Drag to pan, scroll to zoom, hover to read values. Default true."
+      },
+      {
+        "name": "grid",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      }
+    ]
+  },
+  "input-otp": {
+    "Root": [
+      {
+        "name": "maxLength",
+        "type": "number",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "value",
+        "type": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "defaultValue",
+        "type": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "onChange",
+        "type": "(value: string) => void",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "onComplete",
+        "type": "(value: string) => void",
+        "required": false,
+        "description": "Called as soon as every slot is filled."
+      },
+      {
+        "name": "pattern",
+        "type": "RegExp",
+        "required": false,
+        "default": "digits only",
+        "description": "Allowed characters (tested per character). Use `REGEXP_ONLY_DIGITS`, `REGEXP_ONLY_CHARS` or `REGEXP_ONLY_DIGITS_AND_CHARS`."
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "invalid",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "inputMode",
+        "type": "\"numeric\" | \"text\" | \"tel\" | \"decimal\" | \"email\" | \"search\" | \"url\" | \"none\"",
+        "required": false,
+        "description": "Virtual keyboard hint. Defaults to `numeric` for the digits pattern, otherwise `text`."
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "autoFocus",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "Slot": [
+      {
+        "name": "index",
+        "type": "number",
+        "required": true,
+        "description": ""
+      }
+    ]
+  },
+  "item": {
+    "Root": [
+      {
+        "name": "interactive",
+        "type": "boolean",
+        "required": false,
+        "description": "Hover/link styling, for items that are clickable."
+      }
+    ]
+  },
+  "kbd-group": {
+    "KbdGroup": [
+      {
+        "name": "separator",
+        "type": "ReactNode",
+        "required": false,
+        "description": "Inserted between keys, e.g. `\"+\"`."
+      }
+    ]
+  },
+  "label": {
+    "Label": [
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "required": false,
+        "description": "Make the label look disabled (lower opacity, not-allowed cursor)."
+      }
+    ]
+  },
+  "marker": {
+    "Status": [
+      {
+        "name": "tone",
+        "type": "MarkerTone",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "icon",
+        "type": "ReactNode",
+        "required": false,
+        "description": ""
+      }
+    ]
+  },
+  "math": {
+    "MathRenderer": [
+      {
+        "name": "latex",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "display",
+        "type": "boolean",
+        "required": false,
+        "default": "false (inline)",
+        "description": "Centered display style."
+      },
+      {
+        "name": "katex",
+        "type": "KatexLike",
+        "required": false,
+        "description": "Your KaTeX instance. Omit to import `katex` on demand."
+      }
+    ],
+    "FormulaBlock": [
+      {
+        "name": "latex",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "title",
+        "type": "ReactNode",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "description",
+        "type": "ReactNode",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "variables",
+        "type": "{ symbol: string; meaning: ReactNode }[]",
+        "required": false,
+        "description": "Legend of symbols: `symbol` is LaTeX."
+      },
+      {
+        "name": "katex",
+        "type": "KatexLike",
+        "required": false,
+        "description": ""
+      }
+    ]
+  },
+  "menubar": {
+    "Menu": [
+      {
+        "name": "label",
+        "type": "React.ReactNode",
+        "required": true,
+        "description": "Trigger content (e.g. \"File\")."
+      },
+      {
+        "name": "children",
+        "type": "React.ReactNode",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      }
+    ]
+  },
+  "message-scroller": {
+    "Root": [
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "threshold",
+        "type": "number",
+        "required": false,
+        "default": "80",
+        "description": "Distance in px from the bottom that still counts as \"at the bottom\"."
+      },
+      {
+        "name": "watch",
+        "type": "unknown[]",
+        "required": false,
+        "description": "Dependency array. When it changes (e.g. message count or the last message while streaming) the scroller sticks to the bottom if the user was already there."
+      }
+    ]
+  },
+  "message": {
+    "Root": [
+      {
+        "name": "align",
+        "type": "MessageAlign",
+        "required": false,
+        "default": "start",
+        "description": "`\"end\"` for your own message (right), `\"start\"` for the other side (left)."
+      }
+    ],
+    "Group": [
+      {
+        "name": "align",
+        "type": "MessageAlign",
+        "required": false,
+        "default": "start",
+        "description": "Side of the group: `\"start\"` (left, the other person) or `\"end\"` (right, you)."
+      },
+      {
+        "name": "avatar",
+        "type": "ReactNode",
+        "required": false,
+        "description": "Avatar for the whole group, rendered once (not per bubble)."
+      },
+      {
+        "name": "avatarPosition",
+        "type": "AvatarPosition",
+        "required": false,
+        "description": "Avatar position relative to the group: `\"top\"` aligns with the first bubble (Slack style), `\"bottom\"` aligns with the last bubble (iMessage/WhatsApp style), `\"none\"` hides the avatar.",
+        "default": "bottom"
+      },
+      {
+        "name": "header",
+        "type": "ReactNode",
+        "required": false,
+        "description": "Header shown once for the whole group (e.g. sender name + time), above the first bubble."
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": false,
+        "description": "`Bubble.Root` elements (one or more) — not `Message.Root`; avatar and alignment are handled here."
+      }
+    ]
+  },
+  "model-lab": {
+    "ModelLab": [
+      {
+        "name": "catalog",
+        "type": "ModelCatalogLike",
+        "required": true,
+        "description": "`catalog` from `@indoku/science` (or anything with list() and build())."
+      },
+      {
+        "name": "defaultModel",
+        "type": "string",
+        "required": false,
+        "default": "the first one in the list",
+        "description": "Model shown first."
+      },
+      {
+        "name": "categories",
+        "type": "string[]",
+        "required": false,
+        "default": "all",
+        "description": "Only show these categories."
+      },
+      {
+        "name": "renderLatex",
+        "type": "(latex: string) => ReactNode",
+        "required": false,
+        "description": "Render LaTeX lines of the scene, e.g. `renderLatex` from `@indoku/ui/katex`."
+      },
+      {
+        "name": "view3d",
+        "type": "(scene: Scene3DLike, t: number) => ReactNode",
+        "required": false,
+        "default": "the built-in `Plot3D",
+        "description": "Draw 3D scenes yourself (e.g. with `Scene3DView` from `@indoku/ui/three`)."
+      },
+      {
+        "name": "height",
+        "type": "number",
+        "required": false,
+        "description": "3D viewport height in px. Default 380."
+      }
+    ]
+  },
+  "navigation-menu": {
+    "Root": [
+      {
+        "name": "closeDelay",
+        "type": "number",
+        "required": false,
+        "default": "150",
+        "description": "Delay in ms before the menu closes after the pointer leaves the trigger/content."
+      }
+    ],
+    "ContentGrid": [
+      {
+        "name": "columns",
+        "type": "number",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "ContentLink": [
+      {
+        "name": "title",
+        "type": "ReactNode",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "description",
+        "type": "ReactNode",
+        "required": false,
+        "description": ""
+      }
+    ]
+  },
+  "password-input": {
+    "PasswordInput": [
+      {
+        "name": "visible",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "defaultVisible",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "onVisibleChange",
+        "type": "(visible: boolean) => void",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "visibilityIcon",
+        "type": "{ on: React.ReactNode; off: React.ReactNode }",
+        "required": false,
+        "description": "Custom icons for the toggle button."
+      }
+    ],
+    "PasswordStrengthMeter": [
+      {
+        "name": "value",
+        "type": "number",
+        "required": true,
+        "description": "0–4, usually from `passwordStrength()`."
+      },
+      {
+        "name": "max",
+        "type": "number",
+        "required": false,
+        "description": ""
+      }
+    ]
+  },
+  "periodic-table": {
+    "PeriodicTable": [
+      {
+        "name": "elements",
+        "type": "readonly PeriodicElement[]",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "onSelect",
+        "type": "(element: PeriodicElement) => void",
+        "required": false,
+        "description": "Called when a cell is clicked."
+      },
+      {
+        "name": "selected",
+        "type": "number",
+        "required": false,
+        "description": "Controlled selected atomic number."
+      }
+    ]
+  },
+  "plot2d": {
+    "Plot2D": [
+      {
+        "name": "scene",
+        "type": "Scene2DLike",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "t",
+        "type": "number",
+        "required": false,
+        "description": "Controlled time (seconds). Omit to let the component animate itself."
+      },
+      {
+        "name": "controls",
+        "type": "boolean",
+        "required": false,
+        "description": "Show play/pause/scrubber when the scene is animated. Default true."
+      },
+      {
+        "name": "aspect",
+        "type": "number",
+        "required": false,
+        "description": "Width / height of the plot area. Default 16/9."
+      },
+      {
+        "name": "grid",
+        "type": "boolean",
+        "required": false,
+        "description": "Draw axes grid. Default true."
+      },
+      {
+        "name": "renderLatex",
+        "type": "(latex: string) => ReactNode",
+        "required": false,
+        "description": "Render scene.latex strings (e.g. with KaTeX). Omit to hide them."
+      }
+    ]
+  },
+  "plot3d": {
+    "Plot3D": [
+      {
+        "name": "scene",
+        "type": "Scene3DLike",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "t",
+        "type": "number",
+        "required": false,
+        "description": "Controlled time (seconds). Omit to let the component animate itself."
+      },
+      {
+        "name": "controls",
+        "type": "boolean",
+        "required": false,
+        "description": "Show play/pause/scrubber when the scene is animated. Default true."
+      },
+      {
+        "name": "height",
+        "type": "number",
+        "required": false,
+        "description": "Canvas height in px. Default 360."
+      },
+      {
+        "name": "autoRotate",
+        "type": "boolean",
+        "required": false,
+        "description": "Slowly orbit the camera. Default false."
+      },
+      {
+        "name": "renderLatex",
+        "type": "(latex: string) => ReactNode",
+        "required": false,
+        "description": "Render scene.latex strings (e.g. with KaTeX). Omit to hide them."
+      }
+    ]
+  },
+  "prose": {
+    "Prose": [
+      {
+        "name": "size",
+        "type": "\"md\" | \"lg\"",
+        "required": false,
+        "description": ""
+      }
+    ]
+  },
+  "qr-code": {
+    "Root": [
+      {
+        "name": "value",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "level",
+        "type": "QrLevel",
+        "required": false,
+        "default": "M",
+        "description": "Error-correction level. Raised automatically while the data still fits (see `noBoost`)."
+      },
+      {
+        "name": "noBoost",
+        "type": "boolean",
+        "required": false,
+        "description": "Disable the automatic level upgrade."
+      },
+      {
+        "name": "quietZone",
+        "type": "number",
+        "required": false,
+        "default": "2",
+        "description": "White margin in modules (spec says 4, 2 is usually still readable)."
+      },
+      {
+        "name": "fill",
+        "type": "string",
+        "required": false,
+        "default": "near black",
+        "description": "Dark module color."
+      },
+      {
+        "name": "background",
+        "type": "string",
+        "required": false,
+        "default": "white",
+        "description": "Background color. A QR code needs contrast, so it does not follow dark mode."
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "required": false,
+        "default": "QR code",
+        "description": "`aria-label` of the SVG."
+      },
+      {
+        "name": "children",
+        "type": "React.ReactNode",
+        "required": false,
+        "description": ""
+      }
+    ]
+  },
+  "questionnaire": {
+    "Root": [
+      {
+        "name": "items",
+        "type": "readonly QuestionItem[]",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "defaultValue",
+        "type": "Answers",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "onSubmit",
+        "type": "(answers: Answers) => void",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "onStepChange",
+        "type": "(step: number) => void",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "shortcuts",
+        "type": "boolean",
+        "required": false,
+        "default": "true",
+        "description": "Letter keys (A, B, C…) to pick answers."
+      },
+      {
+        "name": "labels",
+        "type": "Partial<Labels>",
+        "required": false,
+        "description": ""
+      }
+    ]
+  },
+  "resizable": {
+    "Panel": [
+      {
+        "name": "defaultSize",
+        "type": "number",
+        "required": false,
+        "description": "Percent (0–100). Panels without a `defaultSize` share the remaining space equally."
+      },
+      {
+        "name": "minSize",
+        "type": "number",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "maxSize",
+        "type": "number",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "PanelGroup": [
+      {
+        "name": "direction",
+        "type": "Direction",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "onLayout",
+        "type": "(sizes: number[]) => void",
+        "required": false,
+        "description": "Called whenever sizes change (array of percents, in panel order)."
+      }
+    ],
+    "Handle": [
+      {
+        "name": "withHandle",
+        "type": "boolean",
+        "required": false,
+        "description": "Show a small grip in the middle of the line."
+      },
+      {
+        "name": "step",
+        "type": "number",
+        "required": false,
+        "default": "5",
+        "description": "Keyboard step in percent."
+      }
+    ]
+  },
+  "rich-text-editor": {
+    "Root": [
+      {
+        "name": "value",
+        "type": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "defaultValue",
+        "type": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "onChange",
+        "type": "(html: string) => void",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "editable",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "sanitize",
+        "type": "boolean",
+        "required": false,
+        "default": "true",
+        "description": "Sanitize incoming HTML (`value` and paste)."
+      }
+    ],
+    "Control": [
+      {
+        "name": "label",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "active",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "onRun",
+        "type": "() => void",
+        "required": true,
+        "description": ""
+      }
+    ],
+    "Content": [
+      {
+        "name": "placeholder",
+        "type": "string",
+        "required": false,
+        "description": ""
+      }
+    ]
+  },
+  "scroll-area": {
+    "Root": [
+      {
+        "name": "orientation",
+        "type": "\"vertical\" | \"horizontal\" | \"both\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "type",
+        "type": "\"hover\" | \"always\" | \"scroll\"",
+        "required": false,
+        "description": "`\"hover\"` shows the scrollbar on hover/scroll, `\"always\"` always, `\"scroll\"` only while scrolling.",
+        "default": "hover"
+      },
+      {
+        "name": "viewportProps",
+        "type": "ComponentPropsWithoutRef<\"div\">",
+        "required": false,
+        "description": "Extra props for the viewport element (e.g. `tabIndex`, `aria-label`)."
+      }
+    ]
+  },
+  "sidebar": {
+    "Provider": [
+      {
+        "name": "defaultOpen",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "open",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "onOpenChange",
+        "type": "(open: boolean) => void",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "shortcut",
+        "type": "string | false",
+        "required": false,
+        "description": "Shortcut letter used with Cmd/Ctrl. `false` disables it.",
+        "default": "b"
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "MenuButton": [
+      {
+        "name": "isActive",
+        "type": "boolean",
+        "required": false,
+        "description": "Marks the current page: adds `aria-current=\"page\"` and a highlight."
+      }
+    ]
+  },
+  "time": {
+    "Time": [
+      {
+        "name": "value",
+        "type": "Date | string | number",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "locale",
+        "type": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "options",
+        "type": "Intl.DateTimeFormatOptions",
+        "required": false,
+        "default": "{ dateStyle: \"medium\" }",
+        "description": "`Intl.DateTimeFormat` options."
+      },
+      {
+        "name": "children",
+        "type": "ReactNode",
+        "required": false,
+        "description": "Custom text (e.g. \"2 hours ago\"); replaces the formatted output when present."
+      }
+    ]
+  },
+  "toast": {
+    "Toaster": [
+      {
+        "name": "toaster",
+        "type": "CreateToasterReturn<ReactNode>",
+        "required": false,
+        "description": "Custom toaster instance. Defaults to the built-in one (exported as `toaster`)."
+      }
+    ]
+  },
+  "toggle-group": {
+    "Root": [
+      {
+        "name": "type",
+        "type": "\"single\" | \"multiple\"",
+        "required": false,
+        "default": "single",
+        "description": "`\"single\"`: at most one active. `\"multiple\"`: any number."
+      },
+      {
+        "name": "value",
+        "type": "string[]",
+        "required": false,
+        "description": "Always an array, even for `type=\"single\"` (0 or 1 items)."
+      },
+      {
+        "name": "defaultValue",
+        "type": "string[]",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "onValueChange",
+        "type": "(value: string[]) => void",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "variant",
+        "type": "\"outline\" | \"ghost\" | \"subtle\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "size",
+        "type": "\"sm\" | \"md\" | \"lg\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "spacing",
+        "type": "number",
+        "required": false,
+        "default": "2",
+        "description": "Gap between items (spacing token). `0` joins the items (connected borders)."
+      },
+      {
+        "name": "orientation",
+        "type": "\"horizontal\" | \"vertical\"",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "Item": [
+      {
+        "name": "value",
+        "type": "string",
+        "required": true,
+        "description": ""
+      }
+    ]
+  },
+  "toggle": {
+    "Toggle": [
+      {
+        "name": "variant",
+        "type": "\"default\" | \"outline\"",
+        "required": false,
+        "default": "default",
+        "description": "`\"default\"` is transparent (ghost), `\"outline\"` has a border."
+      },
+      {
+        "name": "pressed",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "defaultPressed",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "onPressedChange",
+        "type": "(pressed: boolean) => void",
+        "required": false,
+        "description": ""
+      }
+    ]
+  }
+}
