@@ -5,8 +5,7 @@ import { dirname, join } from "node:path"
 import { siteTagline, titleFor } from "../../lib/docs-md"
 
 const require = createRequire(import.meta.url)
-const fontDir = dirname(require.resolve("@expo-google-fonts/inter/package.json"))
-const fontFiles = [join(fontDir, "700Bold/Inter_700Bold.ttf"), join(fontDir, "400Regular/Inter_400Regular.ttf")]
+const fontFiles = [join(process.cwd(), 'public/fonts/Inter_700Bold.ttf'), join(process.cwd(), 'public/fonts/Inter_400Regular.ttf')]
 
 const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
 

@@ -18,7 +18,6 @@
     "@astrojs/react": "^7.0.0",
     "@astrojs/vercel": "^11.0.14",
     "@emotion/react": "^11.14.0",
-    "@expo-google-fonts/inter": "^0.4.2",
     "@indoku/science": "0.0.1-beta",
     "@indoku/ui": "0.0.1-beta",
     "@indoku/ui-mcp": "0.0.1-beta.0",
