@@ -1,11 +1,20 @@
 import { Resvg } from "@resvg/resvg-js"
 import type { APIRoute } from "astro"
-import { createRequire } from "node:module"
-import { dirname, join } from "node:path"
-import { siteTagline, titleFor } from "../../lib/docs-md"
+import { existsSync } from "node:fs"
+import { join } from "node:path"
+import { allSlugs, siteTagline, titleFor } from "../../lib/docs-md"
 
-const require = createRequire(import.meta.url)
-const fontFiles = [join(process.cwd(), 'public/fonts/Inter_700Bold.ttf'), join(process.cwd(), 'public/fonts/Inter_400Regular.ttf')]
+// Rendered at build time (see `prerender` below), so the fonts are read from the project's public/ folder
+// while it still exists. Nothing here runs inside a serverless function.
+export const prerender = true
+
+export function getStaticPaths() {
+  return ["default", ...allSlugs()].map((name) => ({ params: { name } }))
+}
+
+const fontFiles = ["Inter_700Bold.ttf", "Inter_400Regular.ttf"].map((f) => join(process.cwd(), "public/fonts", f))
+const missing = fontFiles.filter((f) => !existsSync(f))
+if (missing.length) throw new Error("OG image fonts not found: " + missing.join(", ") + ". Commit public/fonts/*.ttf.")
 
 const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
 
@@ -53,5 +62,5 @@ export const GET: APIRoute = ({ params }) => {
   const name = params.name ?? "default"
   const info = name === "default" ? { title: "IndokuUI", description: siteTagline } : titleFor(name)
   if (!info) return new Response("Not found", { status: 404 })
-  return new Response(render(info.title, info.description) as unknown as BodyInit, { headers: { "Content-Type": "image/png", "Cache-Control": "public, max-age=86400" } })
+  return new Response(render(info.title, info.description) as unknown as BodyInit, { headers: { "Content-Type": "image/png" } })
 }
