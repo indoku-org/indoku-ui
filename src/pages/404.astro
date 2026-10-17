@@ -1,0 +1,47 @@
+---
+import NotFound from "../components/NotFound"
+import Layout from "../layouts/Layout.astro"
+import { nav } from "../lib/guides"
+
+export const prerender = false
+
+Astro.response.status = 404
+
+const raw = Astro.originPathname ?? Astro.url.pathname
+const path = raw.length > 1 ? raw.replace(/\/+$/, "") : raw
+
+// "Did you mean": closest docs pages to the last path segment.
+const last = (path.replace(/\.md$/, "").split("/").filter(Boolean).pop() ?? "").toLowerCase()
+
+function distance(a: string, b: string) {
+  const row = Array.from({ length: b.length + 1 }, (_, i) => i)
+  for (let i = 1; i <= a.length; i++) {
+    let prev = row[0]!
+    row[0] = i
+    for (let j = 1; j <= b.length; j++) {
+      const tmp = row[j]!
+      row[j] = Math.min(row[j]! + 1, row[j - 1]! + 1, prev + (a[i - 1] === b[j - 1] ? 0 : 1))
+      prev = tmp
+    }
+  }
+  return row[b.length]!
+}
+
+const all = [
+  ...nav.guides.map((g) => ({ slug: g.slug, name: g.title })),
+  ...nav.groups.flatMap((g) => g.items.map((i) => ({ slug: i.slug, name: i.name }))),
+]
+
+const suggestions = last
+  ? all
+      .map((p) => ({ ...p, score: p.slug.includes(last) || last.includes(p.slug) ? 0 : distance(last, p.slug) }))
+      .filter((p) => p.score <= Math.max(2, Math.floor(last.length / 3)))
+      .sort((a, b) => a.score - b.score)
+      .slice(0, 4)
+      .map((p) => ({ href: `/docs/${p.slug}`, name: p.name }))
+  : []
+---
+
+<Layout title="Page not found" description="The page you are looking for doesn't exist." path="/404">
+  <NotFound client:load path={path} suggestions={suggestions} />
+</Layout>
