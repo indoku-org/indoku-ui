@@ -30,11 +30,11 @@ const FolderIcon = () => (
 export function QrCodeDemo() {
   return (
     <HStack gap="4" align="start">
-      <QrCode.Root value="https://indoku.id" boxSize="36" />
-      <QrCode.Root value="https://indoku.id/u/demo" level="H" boxSize="36">
+      <QrCode.Root value="https://ui.indoku.org" boxSize="36" />
+      <QrCode.Root value="https://ui.indoku.org/docs/qr-code" level="H" boxSize="36">
         <QrCode.Frame />
         <QrCode.Overlay>
-          <Text fontWeight="bold">I</Text>
+          <Text fontWeight="bold" color="black">I</Text>
         </QrCode.Overlay>
       </QrCode.Root>
     </HStack>

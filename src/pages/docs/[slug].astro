@@ -11,7 +11,7 @@ if (slug === "introduction") return Astro.redirect("/docs", 301)
 
 const page = pageBySlug.get(slug)
 const guide = guideBySlug.get(slug)
-if (!page && !guide) return new Response("Not found", { status: 404 })
+if (!page && !guide) return Astro.rewrite("/404")
 
 const i = page ? pages.findIndex((p) => p.slug === slug) : -1
 const prev = i > 0 ? pages[i - 1] : undefined

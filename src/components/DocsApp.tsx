@@ -1,4 +1,5 @@
-import { Box, Button, Code, CodeBlock, ColorModeButton, Command, Container, Flex, HStack, Heading, Link, Prose, Provider, Sidebar, Span, Stack, Table, Tabs, Text, Toaster, version } from "@indoku/ui"
+import { Box, Button, Code, CodeBlock, ColorModeButton, Command, Container, Flex, HStack, Heading, Link, Prose, Provider, Sidebar, Span, Stack, Table, Tabs, Text, Toaster } from "@indoku/ui"
+import { VERSION } from "../lib/site"
 import { useEffect, useMemo, useState } from "react"
 import type { ReactNode } from "react"
 import { LuCheck, LuCopy, LuFileText, LuSearch } from "react-icons/lu"
@@ -162,7 +163,7 @@ export function Shell({ nav, active, children, toc }: { nav: Nav; active: string
           <a href="/">
             <Heading size="sm">IndokuUI</Heading>
           </a>
-          <Text fontSize="xs" color="fg.muted">v{version} · by @indokudev</Text>
+          <Text fontSize="xs" color="fg.muted">v{VERSION} · by @indokudev</Text>
         </Sidebar.Header>
         <Sidebar.Content>
           {guideGroups.map((gg) => (

@@ -1,6 +1,7 @@
 ---
 import { colorModeScript } from "@indoku/ui"
 import "katex/dist/katex.min.css"
+import { canonicalFor, robotsFor } from "../lib/seo"
 
 interface Props {
   title: string
@@ -11,7 +12,8 @@ interface Props {
 
 const { title, description, path, ogImage = "/og/default.png" } = Astro.props
 const site = Astro.site ?? new URL(Astro.url.origin)
-const pageUrl = new URL(path, site).href
+const pageUrl = canonicalFor(path, site)
+const robots = robotsFor(path)
 const image = new URL(ogImage, site).href
 const full = path === "/" ? title : `${title} – IndokuUI`
 ---
@@ -25,9 +27,8 @@ const full = path === "/" ? title : `${title} – IndokuUI`
     <meta name="description" content={description} />
     <meta name="author" content="@indokudev" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex, notranslate" />
-    <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex, notranslate" />
-    <meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet" />
+    <meta name="robots" content={robots} />
+    <link rel="canonical" href={pageUrl} />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="IndokuUI" />

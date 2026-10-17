@@ -19,7 +19,7 @@
     "@astrojs/vercel": "^11.0.14",
     "@emotion/react": "^11.14.0",
     "@indoku/science": "0.0.1-beta",
-    "@indoku/ui": "0.0.1-beta",
+    "@indoku/ui": "^0.0.3-beta",
     "@indoku/ui-mcp": "0.0.1-beta.0",
     "@resvg/resvg-js": "^2.6.2",
     "astro": "^7.3.5",

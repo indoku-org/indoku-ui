@@ -6,7 +6,7 @@ import { guideBySlug, nav } from "../../lib/guides"
 
 const guide = guideBySlug.get("introduction")!
 const entry = await getEntry("guides", "introduction")
-if (!entry) return new Response("Not found", { status: 404 })
+if (!entry) return Astro.rewrite("/404")
 const { Content } = await render(entry)
 ---
 

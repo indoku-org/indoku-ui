@@ -1,4 +1,5 @@
-import { Badge, Box, Button, Card, CodeBlock, ColorModeButton, Container, Flex, HStack, Heading, Link, Provider, SimpleGrid, Stack, Text, version } from "@indoku/ui"
+import { Badge, Box, Button, Card, CodeBlock, ColorModeButton, Container, Flex, HStack, Heading, Link, Provider, SimpleGrid, Stack, Text } from "@indoku/ui"
+import { VERSION } from "../lib/site"
 import type { ReactNode } from "react"
 import { LuArrowRight, LuBot } from "react-icons/lu"
 import { InputOtpDemo, QrCodeDemo, QuestionnaireDemo, ResizableDemo, ToggleDemo } from "../content/demos/new"
@@ -30,7 +31,7 @@ export default function Landing({ count, groups }: Props) {
     <Provider>
       <Box as="header" position="sticky" top="0" zIndex="10" bg="bg/80" backdropFilter="blur(8px)" borderBottomWidth="1px">
         <Container maxW="6xl" h="14" display="flex" alignItems="center" justifyContent="space-between">
-          <HStack gap="2"><Heading size="sm">IndokuUI</Heading><Badge variant="outline">v{version}</Badge><Text fontSize="xs" color="fg.muted">by @indokudev</Text></HStack>
+          <HStack gap="2"><Heading size="sm">IndokuUI</Heading><Badge variant="outline">v{VERSION}</Badge><Text fontSize="xs" color="fg.muted">by @indokudev</Text></HStack>
           <HStack gap="1">
             <Button asChild variant="ghost" size="sm"><a href="/docs">Docs</a></Button>
             <Button asChild variant="ghost" size="sm"><a href="/docs/mcp">MCP</a></Button>
@@ -43,7 +44,7 @@ export default function Landing({ count, groups }: Props) {
         <Box as="section" py={{ base: "16", md: "24" }} borderBottomWidth="1px">
           <Container maxW="4xl">
             <Stack gap="6" align="center" textAlign="center">
-              <Badge variant="outline">v{version} · shadcn style</Badge>
+              <Badge variant="outline">v{VERSION} · shadcn style</Badge>
               <Heading as="h1" size={{ base: "4xl", md: "6xl" }} letterSpacing="tight" lineHeight="1.05">React UI, with the shadcn look.</Heading>
               <Text fontSize={{ base: "md", md: "lg" }} color="fg.muted" maxW="2xl">
                 IndokuUI is a standalone React UI library with a minimal, shadcn-style design, its own styling engine and dozens of ready-made components.
@@ -107,7 +108,7 @@ export default function Landing({ count, groups }: Props) {
       </Box>
 
       <Box as="footer" borderTopWidth="1px" py="8">
-        <Container maxW="6xl"><Text fontSize="sm" color="fg.muted">Created by @indokudev · IndokuUI v{version}</Text></Container>
+        <Container maxW="6xl"><Text fontSize="sm" color="fg.muted">Created by @indokudev · IndokuUI v{VERSION}</Text></Container>
       </Box>
     </Provider>
   )
